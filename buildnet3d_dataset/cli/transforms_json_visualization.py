@@ -2,10 +2,11 @@
 Visualize position of cameras from transforms.json
 
 For each synthetic building, multi-views are generated. For each view, the position
-of thecamera is recorded as a rotation (or transform) matrix in a file called
+of the camera is recorded as a rotation (or transform) matrix in a file called
 transforms.json (which contains also the parameters of the camera). This script
 reads the file and plots the cameras.
 """
+
 import json
 import pathlib
 from dataclasses import dataclass
