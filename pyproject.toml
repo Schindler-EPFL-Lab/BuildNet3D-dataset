@@ -13,11 +13,13 @@ dependencies = [
     "jsonpickle>=4.0.1",
     "matplotlib>=3.10.0",
     "networkx>=3.4.2",
-    "open3d>=0.18.0",
     "pyntcloud>=0.3.1",
     "pytransform3d>=3.10.0",
     "tyro>=0.9.3",
 ]
+
+[project.optional-dependencies]
+pointcloud = ["open3d>=0.18.0"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["buildnet3d_dataset"]

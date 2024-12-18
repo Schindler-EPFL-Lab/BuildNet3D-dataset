@@ -59,10 +59,14 @@ dependencies = [
     { name = "jsonpickle" },
     { name = "matplotlib" },
     { name = "networkx" },
-    { name = "open3d" },
     { name = "pyntcloud" },
     { name = "pytransform3d" },
     { name = "tyro" },
+]
+
+[package.optional-dependencies]
+pointcloud = [
+    { name = "open3d" },
 ]
 
 [package.metadata]
@@ -71,9 +75,9 @@ requires-dist = [
     { name = "jsonpickle", specifier = ">=4.0.1" },
     { name = "matplotlib", specifier = ">=3.10.0" },
     { name = "networkx", specifier = ">=3.4.2" },
-    { name = "open3d", specifier = ">=0.18.0" },
+    { name = "open3d", marker = "extra == 'pointcloud'" },
     { name = "pyntcloud", specifier = ">=0.3.1" },
-    { name = "pytransform3d" },
+    { name = "pytransform3d", specifier = ">=3.10.0" },
     { name = "tyro", specifier = ">=0.9.3" },
 ]
 
