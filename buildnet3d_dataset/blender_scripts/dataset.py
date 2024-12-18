@@ -282,7 +282,7 @@ class Dataset:
         segmentation_mapping_path: Path,
         building_config_path: Path,
         material_texture_path: Path,
-        output_base_path: str | None = None,
+        output_base_path: str,
     ) -> "Dataset":
         """
         Function to create a dataset object from several configuration files.
@@ -312,9 +312,9 @@ class Dataset:
                         f"json decoded at {file} is not a subclase of ComposedBuilding"
                     )
                 buildings.append(building)  # type: ignore
-        if output_base_path is not None:
-            dataset_config["output_base_path"] = output_base_path
+
         dataset = cls(
+            output_base_path=output_base_path,
             segmentation_mapping=segmentation_mapping,
             material_texture_path=material_texture_path,
             buildings=buildings,
