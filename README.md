@@ -2,7 +2,9 @@
 
 This repository contains the code for generating the BuildNet3D dataset.
 It is a re-write of the code by the [Computational Design Institute](https://github.com/CDInstitute/Building-Dataset-Generator).
-We obtain similar buildings but we a leaner code base and we further compute the windows-to-wall ratio, ratio of wall and windows per facades of the building.
+We obtain similar buildings but we further compute the windows-to-wall ratio, ratio of wall and windows per facades of the building.
+
+The codebase should also be more maintainable and easier to use.
 
 ## Installation
 
