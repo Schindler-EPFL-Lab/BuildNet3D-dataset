@@ -1,24 +1,23 @@
+import shutil
 import unittest
 from pathlib import Path
 
 from tests.tests_building_generator.test_helpers.test_composed_building import (
     MockComposedBuilding,
 )
-from tests.tests_building_generator.test_helpers.test_utils import delete_dir
 
 
 class TestComposedBuilding(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls) -> None:
         cls.building = MockComposedBuilding()
         cls.building.add_roof(0, (1.0, 0, 0), overhang=0.25, thickness=1)
 
-        cls.output_path = "./tests/building_generator_test_outputs/"
-        Path(cls.output_path).mkdir(exist_ok=True)
+        cls.output_path = Path("./tests/building_generator_test_outputs/")
+        cls.output_path.mkdir(exist_ok=True)
 
     def test_save_obj(self) -> None:
-        self.building.save_obj(0, self.output_path)
+        self.building.save_obj(0, str(self.output_path))
 
         # save_obj should save a .obj and .mtl
         path = Path(self.output_path, "model/0.obj")
@@ -27,24 +26,24 @@ class TestComposedBuilding(unittest.TestCase):
         self.assertTrue(path_mtl.is_file())
 
     def test_save_segmented_mesh(self) -> None:
-        self.building.save_segmented_mesh(filename=0, data_folder=self.output_path)
+        self.building.save_segmented_mesh(filename=0, data_folder=str(self.output_path))
         path = Path(self.output_path, "model/0_segmented.ply")
         self.assertTrue(path.is_file())
 
     def test_save_ply(self) -> None:
-        self.building.save_ply(0, self.output_path, 0)
+        self.building.save_ply(0, str(self.output_path), 0)
 
         path = Path(self.output_path, "pointCloud/0.ply")
         self.assertTrue(path.is_file())
 
     def test_save_dae(self) -> None:
-        self.building.save_dae(0, self.output_path)
+        self.building.save_dae(0, str(self.output_path))
 
         path = Path(self.output_path, "model/0.dae")
         self.assertTrue(path.is_file())
 
     def test_save_stl(self) -> None:
-        self.building.save_stl(0, self.output_path)
+        self.building.save_stl(0, str(self.output_path))
 
         path = Path(self.output_path, "pointCloud/0.stl")
         self.assertTrue(path.is_file())
@@ -66,4 +65,4 @@ class TestComposedBuilding(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls) -> None:
-        delete_dir(Path(cls.output_path))
+        shutil.rmtree(cls.output_path)
